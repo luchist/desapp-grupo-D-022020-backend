@@ -1,71 +1,99 @@
 package ar.edu.unq.desapp.grupod.argconectadabackend.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Project {
+
+	private String name;
 	
 	private Place place;
 
 	private double factor;
 
-	private int minimumPercentageOfProjectClosure;
+	private double percentageForClose;
 
-	private String nameOfProject;
+	private LocalDateTime startDate;
 
-	private LocalDateTime projectStartDate;
-
-	private LocalDateTime projectEndDate;
-
-	public Project(Place place, String nameOfProject, LocalDateTime projectStartDate, LocalDateTime projectEndDate) {
-		this.factor = 1000;
-		this.minimumPercentageOfProjectClosure = 100;
-		this.nameOfProject = nameOfProject;
-		this.projectStartDate = projectStartDate;
-		this.projectEndDate = projectEndDate;
-	}
+	private LocalDateTime endDate;
 	
-	public double costOfProject() {
-		return place.getPopulation() * this.factor;
+	private List<Donation> donations = new ArrayList<Donation>();
+
+	public Project(Place place, String nameOfProject, LocalDateTime startDate, LocalDateTime endDate) {
+		this.factor = 1000;
+		this.percentageForClose = 100;
+		this.name = nameOfProject;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
 	}
 
 	public double getFactor() {
-		return this.factor;
+		return factor;
 	}
 
 	public void setFactor(double factor) {
 		this.factor = factor;
 	}
 
-	public int getMinimumPercentageOfProjectClosure() {
-		return this.minimumPercentageOfProjectClosure;
+	public double getPercentageForClose() {
+		return percentageForClose;
 	}
 
-	public void setMinimumPercentageOfProjectClosure(int minimumPercentageOfProjectClosure) {
-		this.minimumPercentageOfProjectClosure = minimumPercentageOfProjectClosure;
+	public void setPercentageForClose(double percentageForClose) {
+		this.percentageForClose = percentageForClose;
 	}
 
-	public String getNameOfProject() {
-		return nameOfProject;
+	public LocalDateTime getStartDate() {
+		return startDate;
 	}
 
-	public void setNameOfProject(String nameOfProject) {
-		this.nameOfProject = nameOfProject;
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
 	}
 
-	public LocalDateTime getProjectEndDate() {
-		return this.projectEndDate;
+	public LocalDateTime getEndDate() {
+		return endDate;
 	}
 
-	public void setProjectEndDate(LocalDateTime projectEndDate) {
-		this.projectEndDate = projectEndDate;
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
 	}
 
-	public LocalDateTime getProjectStartDate() {
-		return this.projectStartDate;
+	public List<Donation> getDonations() {
+		return donations;
 	}
 
-	public void setProjectStartDate(LocalDateTime projectStartDate) {
-		this.projectStartDate = projectStartDate;
+	public void setDonations(List<Donation> donations) {
+		this.donations = donations;
+	}
+	
+	public double getCost() {
+		return place.getPopulation() * this.factor;
 	}
 
+	public int getPlacePopulation() {
+		return this.place.getPopulation();
+	}
+
+	public void receiveDonation(String nickName, double amount, LocalDate date, String commentary) {
+		this.donations.add(new Donation(nickName, amount, date, commentary));
+	}
 }

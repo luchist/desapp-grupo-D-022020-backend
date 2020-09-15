@@ -8,10 +8,13 @@ public class Place {
 	
 	private int population;
 	
-	private boolean connectivity;
+	private String status;
 	
-	public Place() {
-		
+	public Place(String name, String province, int population, String status) {
+		this.name = name;
+		this.province = province;
+		this.population = population;
+		this.status = status;
 	}
 
 	public String getName() {
@@ -38,11 +41,11 @@ public class Place {
 		this.population = population;
 	}
 
-	public boolean isConnectivity() {
-		return this.connectivity;
+	public String getStatus() {
+		return this.status;
 	}
 
-	public void setConnectivity(boolean connectivity) {
-		this.connectivity = connectivity;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
